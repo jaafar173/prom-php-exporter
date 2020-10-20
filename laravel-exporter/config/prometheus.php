@@ -90,7 +90,7 @@ return [
     |
     */
 
-    'storage_adapters' => [
+    'storage_adapter_options' => [
 
         'redis' => [
             'host' => env('REDIS_HOST', 'localhost'),

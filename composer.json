@@ -1,8 +1,23 @@
 {
     "name": "your-vendor-name/package-name",
     "description": "A short description of what your package does",
+    "authors": ["jaafar"],
+
     "require": {
         "php": "^7.2",
-        "another-vendor/package": "1.*"
+        "promphp/prometheus_client_php": "^2.1",
+        "illuminate/support": "^5.3 || ^6.0 || ^7.0",
+        "illuminate/routing": "^5.3 || ^6.0 || ^7.0"
+    },
+
+    "extra": {
+        "laravel": {
+            "providers": [
+                "PromPhpExporter\\LaravelExporter\\PrometheusServiceProvider"
+            ],
+            "aliases": {
+                "prometheus": "PromPhpExporter\\LaravelExporter\\PrometheusFacade"
+            }
+        }
     }
 }

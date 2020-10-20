@@ -1,2 +1,4 @@
-./ideal
+.idea/
 .php_cs_cache
+composer.lock
+vendor

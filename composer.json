@@ -1,5 +1,5 @@
 {
-    "name": "PromPhpExporter/LaravelExporter",
+    "name": "prom-php-exporter/laravel-exporter",
     "description": "A short description of what your package does",
     "require": {
         "php": "^7.2",

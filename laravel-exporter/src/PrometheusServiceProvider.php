@@ -15,11 +15,13 @@ class PrometheusServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->publishes([
+        $this->publishes(
+            [
             __DIR__."/../config/prometheus.php" => config_path("prometheus.php")
-        ]);
+            ]
+        );
 
-        if(config("prometheus.metrics_route_enabled")){
+        if(config("prometheus.metrics_route_enabled")) {
             $this->loadRoutesFrom(__DIR__."/Routes/routes.php");
         }
         $exporter = $this->app->make(PrometheusExporter::class);
@@ -34,33 +36,40 @@ class PrometheusServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__."/../config/prometheus.php","prometheus");
+        $this->mergeConfigFrom(__DIR__."/../config/prometheus.php", "prometheus");
 
-        $this->app->singleton(PrometheusExporter::class,function ($app){
-            $storageAdapter = $app["prometheus.storage_adapter"];
-            $prometheus     = new CollectorRegistry($storageAdapter);
-            return new PrometheusExporter(config("prometheus.namespace"),$prometheus);
-        });
+        $this->app->singleton(
+            PrometheusExporter::class, function ($app) {
+                $storageAdapter = $app["prometheus.storage_adapter"];
+                $prometheus     = new CollectorRegistry($storageAdapter);
+                return new PrometheusExporter(config("prometheus.namespace"), $prometheus);
+            }
+        );
 
-        $this->app->alias(PrometheusExporter::class,"prometheus");
+        $this->app->alias(PrometheusExporter::class, "prometheus");
 
-        $this->app->bind("prometheus.storage_adapter_factory",function (){
-            return new StorageAdapterFactory();
-        });
+        $this->app->bind(
+            "prometheus.storage_adapter_factory", function () {
+                return new StorageAdapterFactory();
+            }
+        );
 
-        $this->app->bind(Adapter::class,function ($app){
-            $storageAdapterFactory = $app->make("prometheus.storage_adapter_factory");
-            $driverName            = config("prometheus.storage_adapter");
-            $driverOptions         = config("prometheus.storage_adapter_options");
-            $driverOption          = Arr::get($driverOptions,$driverName,[]);
+        $this->app->bind(
+            Adapter::class, function ($app) {
+                $storageAdapterFactory = $app->make("prometheus.storage_adapter_factory");
+                $driverName            = config("prometheus.storage_adapter");
+                $driverOptions         = config("prometheus.storage_adapter_options");
+                $driverOption          = Arr::get($driverOptions, $driverName, []);
 
-            return $storageAdapterFactory($driverName,$driverOption);
-        });
-        $this->app->alias(Adapter::class,"prometheus.storage_adapter");
+                return $storageAdapterFactory($driverName, $driverOption);
+            }
+        );
+        $this->app->alias(Adapter::class, "prometheus.storage_adapter");
     }
 
     /**
      * 延迟提供
+     *
      * @return array|string[]
      */
     public function provides()

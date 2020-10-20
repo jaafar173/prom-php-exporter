@@ -2,11 +2,13 @@
 
 namespace PromPhpExporter\LaravelExporter;
 
+use Prometheus\Counter;
 use Prometheus\CollectorRegistry;
 use InvalidArgumentException;
 use PromPhpExporter\LaravelExporter\Contracts\CollectorInterface;
 
-class PrometheusExporter {
+class PrometheusExporter
+{
     /**
      * @var string
      */
@@ -36,31 +38,35 @@ class PrometheusExporter {
     /**
      * @return string
      */
-    public function getNamespace(){
+    public function getNamespace()
+    {
         return $this->namespace;
     }
 
     /**
      * @return CollectorRegistry
      */
-    public function getPrometheus(){
+    public function getPrometheus()
+    {
         return $this->prometheus;
     }
 
     /**
      * @return array
      */
-    public function getCollectors(){
+    public function getCollectors()
+    {
         return $this->collectors;
     }
 
     /**
-     * @param $name
+     * @param  $name
      * @return mixed
      */
-    public function getCollector($name){
-        if(isset($this->collectors[$name])){
-            throw new InvalidArgumentException(sprintf("The name:%s not exists~",$name));
+    public function getCollector($name)
+    {
+        if(isset($this->collectors[$name])) {
+            throw new InvalidArgumentException(sprintf("The name:%s not exists~", $name));
         }
         return $this->collectors[$name];
     }
@@ -68,11 +74,13 @@ class PrometheusExporter {
 
     /**
      * Register Collector
+     *
      * @param CollectorInterface $collector
      */
-    public function registerCollector(CollectorInterface $collector){
+    public function registerCollector(CollectorInterface $collector)
+    {
         $name = $collector->getName();
-        if(!isset($this->collects[$name])){
+        if(!isset($this->collects[$name])) {
             $this->collectors[$name] = $collector;
 
             $collector->registerMetrics($this);
@@ -80,9 +88,9 @@ class PrometheusExporter {
     }
 
     /**
-     * @param $name
-     * @param $help
-     * @param array $labels
+     * @param  $name
+     * @param  $help
+     * @param  array $labels
      * @return \Prometheus\Counter
      * @throws \Prometheus\Exception\MetricsRegistrationException
      */
@@ -108,7 +116,7 @@ class PrometheusExporter {
      *
      * @param string $name
      * @param string $help
-     * @param array $labels
+     * @param array  $labels
      *
      * @return \Prometheus\Counter
      *
@@ -124,7 +132,7 @@ class PrometheusExporter {
      *
      * @param string $name
      * @param string $help
-     * @param array $labels
+     * @param array  $labels
      *
      * @return \Prometheus\Gauge
      *
@@ -152,7 +160,7 @@ class PrometheusExporter {
      *
      * @param string $name
      * @param string $help
-     * @param array $labels
+     * @param array  $labels
      *
      * @return \Prometheus\Gauge
      *
@@ -168,8 +176,8 @@ class PrometheusExporter {
      *
      * @param string $name
      * @param string $help
-     * @param array $labels
-     * @param array $buckets
+     * @param array  $labels
+     * @param array  $buckets
      *
      * @return \Prometheus\Histogram
      *
@@ -197,8 +205,8 @@ class PrometheusExporter {
      *
      * @param string $name
      * @param string $help
-     * @param array $labels
-     * @param array $buckets
+     * @param array  $labels
+     * @param array  $buckets
      *
      * @return \Prometheus\Histogram
      *

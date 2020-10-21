@@ -93,13 +93,14 @@ return [
     'storage_adapter_options' => [
 
         'redis' => [
-            'host' => env('REDIS_HOST', 'localhost'),
-            'port' => env('REDIS_PORT', 6379),
+            'host' => env('PROMETHEUS_REDIS_HOST', 'localhost'),
+            'port' => (int)env('PROMETHEUS_REDIS_PORT', 6379),
             'timeout' => 0.1,
             'read_timeout' => "10",
-            'password' => env('REDIS_PASSWORD', '123456'),
+            'password' => env('PROMETHEUS_REDIS_PASSWORD', '123456'),
             'persistent_connections' => false,
             'prefix' => env('PROMETHEUS_REDIS_PREFIX', 'PROMETHEUS_'),
+            'database' => env('PROMETHEUS_REDIS_PASSWORD', 1),
         ],
 
     ],

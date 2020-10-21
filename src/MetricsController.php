@@ -41,6 +41,6 @@ class MetricsController extends Controller
         $render = new RenderTextFormat();
         $result = $render->render($metrics);
 
-        $this->responseFactory->make($result, 200, ["Content-Type"=>RenderTextFormat::MIME_TYPE]);
+        return $this->responseFactory->make($result, 200, ["Content-Type"=>RenderTextFormat::MIME_TYPE]);
     }
 }

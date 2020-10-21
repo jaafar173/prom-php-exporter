@@ -56,12 +56,12 @@ class PrometheusServiceProvider extends ServiceProvider
 
         $this->app->bind(
             Adapter::class, function ($app) {
-                $storageAdapterFactory = $app->make("prometheus.storage_adapter_factory");
+                $storageAdapterFactory = $app['prometheus.storage_adapter_factory'];
                 $driverName            = config("prometheus.storage_adapter");
                 $driverOptions         = config("prometheus.storage_adapter_options");
                 $driverOption          = Arr::get($driverOptions, $driverName, []);
 
-                return $storageAdapterFactory($driverName, $driverOption);
+                return $storageAdapterFactory->build($driverName, $driverOption);
             }
         );
         $this->app->alias(Adapter::class, "prometheus.storage_adapter");

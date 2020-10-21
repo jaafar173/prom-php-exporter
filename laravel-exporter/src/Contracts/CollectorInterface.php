@@ -1,8 +1,8 @@
 <?php
 
-namespace PromPhpExporter\LaravelExporter\Contracts;
+namespace Lcmf\Prometheus\LaravelExporter\Contracts;
 
-use PromPhpExporter\LaravelExporter\PrometheusExporter;
+use Lcmf\Prometheus\LaravelExporter\PrometheusExporter;
 interface CollectorInterface
 {
     /**

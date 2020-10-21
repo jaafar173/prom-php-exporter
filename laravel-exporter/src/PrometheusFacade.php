@@ -1,6 +1,6 @@
 <?php
 
-namespace PromPhpExporter\LaravelExporter;
+namespace Lcmf\Prometheus\LaravelExporter;
 
 use Illuminate\Support\Facades\Facade;
 

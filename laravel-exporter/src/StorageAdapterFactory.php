@@ -1,5 +1,5 @@
 <?php
-namespace PromPhpExporter\LaravelExporter;
+namespace Lcmf\Prometheus\LaravelExporter;
 
 use InvalidArgumentException;
 use Prometheus\Storage\Adapter;

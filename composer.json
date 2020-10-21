@@ -1,6 +1,6 @@
 {
-    "name": "prom-php-exporter/laravel-exporter",
-    "description": "A short description of what your package does",
+    "name": "lcmf-prometheus/laravel-exporter",
+    "description": "prometheus laravel exporter",
     "require": {
         "php": "^7.2",
         "promphp/prometheus_client_php": "^2.1",
@@ -9,16 +9,16 @@
     },
     "autoload": {
         "psr-4": {
-            "PromPhpExporter\\LaravelExporter\\": "src/"
+            "Lcmf\\Prometheus\\LaravelExporter\\": "src/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "PromPhpExporter\\LaravelExporter\\PrometheusServiceProvider"
+                "Lcmf\\Prometheus\\LaravelExporter\\PrometheusServiceProvider"
             ],
             "aliases": {
-                "prometheus": "PromPhpExporter\\LaravelExporter\\PrometheusFacade"
+                "prometheus": "Lcmf\\Prometheus\\LaravelExporter\\PrometheusFacade"
             }
         }
     }

@@ -1,11 +1,11 @@
 <?php
 
-namespace PromPhpExporter\LaravelExporter;
+namespace Lcmf\Prometheus\LaravelExporter;
 
 use Prometheus\Counter;
 use Prometheus\CollectorRegistry;
 use InvalidArgumentException;
-use PromPhpExporter\LaravelExporter\Contracts\CollectorInterface;
+use Lcmf\Prometheus\LaravelExporter\Contracts\CollectorInterface;
 
 class PrometheusExporter
 {

@@ -9,7 +9,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Lcmf\\Prometheus\\LaravelExporter\\": "laravel-exporter/src"
+            "Lcmf\\Prometheus\\": "laravel-exporter/src"
         }
     },
     "extra": {
